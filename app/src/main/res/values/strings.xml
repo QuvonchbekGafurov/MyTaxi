@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">MyTaxi</string>
+    <string name="mapbox_access_token" translatable="false" tools:ignore="UnusedResources">sk.eyJ1IjoibXl0YXhpMzMyIiwiYSI6ImNsemZoc2MzMjEwcTgyanJ5ejlscWhlN3UifQ.bMIZDQLv5A6vLf3qNHVwVA</string>
+</resources>
