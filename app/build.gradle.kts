@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.serialization)
 }
 
 android {
@@ -40,13 +41,14 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.5.12"
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
@@ -69,6 +71,27 @@ dependencies {
 
     implementation (libs.mapbox)
     implementation (libs.mapbox.compose)
+    implementation(libs.kotlin.coroutines.core)
+
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.json)
+    implementation(libs.ktor.client.contentNegotiation)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.client.serialization)
+
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.material.icons.core)
+
+    implementation(libs.cupertino)
+    implementation(libs.cupertino.icon.extended)
+
+
+
+
+
+
 
 
 

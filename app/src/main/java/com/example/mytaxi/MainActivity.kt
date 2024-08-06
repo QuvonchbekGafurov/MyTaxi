@@ -1,29 +1,34 @@
 package com.example.mytaxi
-
-import android.graphics.Paint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import com.example.mytaxi.ui.theme.MyTaxiTheme
+import com.example.mytaxi.utis.MapScreen
+import com.mapbox.android.core.permissions.PermissionsManager
+import com.mapbox.bindgen.Expected
+import com.mapbox.common.location.AccuracyLevel
+import com.mapbox.common.location.DeviceLocationProvider
+import com.mapbox.common.location.GetLocationCallback
+import com.mapbox.common.location.IntervalSettings
+import com.mapbox.common.location.LocationError
+import com.mapbox.common.location.LocationProviderRequest
+import com.mapbox.common.location.LocationService
+import com.mapbox.common.location.LocationServiceFactory
 import com.mapbox.geojson.Point
+import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapInitOptions
-import com.mapbox.maps.MapOptions
-import com.mapbox.maps.MapboxMap
-import com.mapbox.maps.Projection
 import com.mapbox.maps.Style
-import com.mapbox.maps.extension.compose.ComposeMapInitOptions
+import com.mapbox.maps.extension.compose.DefaultSettingsProvider
 import com.mapbox.maps.extension.compose.MapboxMap
-import com.mapbox.maps.extension.compose.animation.viewport.MapViewportState
-import com.mapbox.maps.extension.compose.style.GenericStyle
-import com.mapbox.maps.extension.style.style
+import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,37 +36,35 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyTaxiTheme {
-                MapboxMap(
-                    Modifier.fillMaxSize(),
-                    style = { GenericStyle(style = Style.SATELLITE) },
-                    mapViewportState = MapViewportState().apply {
-                        setCameraOptions {
-                            zoom(2.0)
-                            center(Point.fromLngLat(-98.0, 39.5))
-                            pitch(0.0)
-                            bearing(0.0)
-                        }
-                    }
-                )
+                MapScreen()
             }
-
         }
     }
-
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun requestLocation(onLocationRequested: (com.mapbox.common.location.Location?) -> Unit) {
+    val request: LocationProviderRequest = LocationProviderRequest.Builder()
+        .apply {
+
+                IntervalSettings.Builder()
+                    .interval(0L)
+                    .minimumInterval(0L)
+                    .maximumInterval(0L)
+                    .build()
+            accuracy(AccuracyLevel.HIGHEST)
+            displacement(0F)
+        }.build()
+
+    val locationService: LocationService = LocationServiceFactory.getOrCreate()
+    val expected: Expected<LocationError, DeviceLocationProvider> = locationService.getDeviceLocationProvider(request)
+    val provider: DeviceLocationProvider? = expected.value
+    provider?.getLastLocation(callback = object : GetLocationCallback {
+        override fun run(location: com.mapbox.common.location.Location?) {
+            onLocationRequested(location)
+        }
+    })
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyTaxiTheme {
-        Greeting("Android")
-    }
-}
+
+
+
