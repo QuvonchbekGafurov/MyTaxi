@@ -51,7 +51,6 @@ fun MapContent(
             GenericStyle(style =Style.STANDARD, projection = Projection.MERCATOR)
         },
         scaleBar = {
-            ScaleBar(modifier = Modifier.statusBarsPadding())
         },
         compass = {
             Compass(modifier = Modifier.statusBarsPadding())

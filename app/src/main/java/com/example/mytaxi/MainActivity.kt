@@ -7,11 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import com.example.mytaxi.ui.theme.MyTaxiTheme
-import com.example.mytaxi.utis.MapScreen
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.bindgen.Expected
 import com.mapbox.common.location.AccuracyLevel
@@ -29,13 +30,19 @@ import com.mapbox.maps.Style
 import com.mapbox.maps.extension.compose.DefaultSettingsProvider
 import com.mapbox.maps.extension.compose.MapboxMap
 import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import com.example.mytaxi.utis.MapScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MyTaxiTheme {
+            var darkTheme by remember { mutableStateOf(false) }
+            MyTaxiTheme(darkTheme = darkTheme) {
                 MapScreen()
             }
         }
