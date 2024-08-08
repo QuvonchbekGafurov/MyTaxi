@@ -11,6 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import com.mapbox.bindgen.Expected
+import com.mapbox.common.location.AccuracyLevel
+import com.mapbox.common.location.DeviceLocationProvider
+import com.mapbox.common.location.GetLocationCallback
+import com.mapbox.common.location.IntervalSettings
+import com.mapbox.common.location.LocationError
+import com.mapbox.common.location.LocationProviderRequest
+import com.mapbox.common.location.LocationService
+import com.mapbox.common.location.LocationServiceFactory
 import com.mapbox.maps.MapInitOptions
 import com.mapbox.maps.Style
 
@@ -71,6 +80,29 @@ fun MapContent(
 
 
 }
+fun requestLocation(onLocationRequested: (com.mapbox.common.location.Location?) -> Unit) {
+    val request: LocationProviderRequest = LocationProviderRequest.Builder()
+        .apply {
+
+            IntervalSettings.Builder()
+                .interval(0L)
+                .minimumInterval(0L)
+                .maximumInterval(0L)
+                .build()
+            accuracy(AccuracyLevel.HIGHEST)
+            displacement(0F)
+        }.build()
+
+    val locationService: LocationService = LocationServiceFactory.getOrCreate()
+    val expected: Expected<LocationError, DeviceLocationProvider> = locationService.getDeviceLocationProvider(request)
+    val provider: DeviceLocationProvider? = expected.value
+    provider?.getLastLocation(callback = object : GetLocationCallback {
+        override fun run(location: com.mapbox.common.location.Location?) {
+            onLocationRequested(location)
+        }
+    })
+}
+
 
 
 

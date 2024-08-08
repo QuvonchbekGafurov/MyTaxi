@@ -47,7 +47,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import com.example.mytaxi.ui.theme.content_secondary
 import com.mapbox.maps.Style
 import io.github.alexzhirkevich.cupertino.CupertinoIcon
 import io.github.alexzhirkevich.cupertino.CupertinoIconButton
@@ -58,15 +57,10 @@ import io.github.alexzhirkevich.cupertino.icons.outlined.Plus
 fun ToggleButton(modifier: Modifier) {
     var isActive by remember { mutableStateOf(false) }
 
-    val activeColor = Color.Green
-    val inactiveColor = Color(0xFFFFFFFF)
-    val selectedTextColor = Color(0xFF000000)
-    val unselectedTextColor = Color(0xFF000000)
-
     Row(
-        modifier =modifier
+        modifier = modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(color = Color.White)
+            .background(color = MaterialTheme.colorScheme.outlineVariant)
             .padding(4.dp),
 
         verticalAlignment = Alignment.CenterVertically
@@ -76,7 +70,7 @@ fun ToggleButton(modifier: Modifier) {
                 .weight(1f)
                 .fillMaxHeight()
                 .background(
-                    if (isActive) inactiveColor else Color.Red,
+                    if (isActive) MaterialTheme.colorScheme.onPrimary else Color.Red,
                     RoundedCornerShape(12.dp)
                 )
                 .clickable { isActive = false }
@@ -85,7 +79,7 @@ fun ToggleButton(modifier: Modifier) {
         ) {
             Text(
                 text = "Band",
-                color = if (isActive) unselectedTextColor else selectedTextColor,
+                color = if (isActive) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onBackground,
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp,
                 fontWeight = if (isActive) FontWeight.Normal else FontWeight.Bold
@@ -98,7 +92,7 @@ fun ToggleButton(modifier: Modifier) {
                 .weight(1f)
                 .fillMaxHeight()
                 .background(
-                    if (isActive) activeColor else inactiveColor,
+                    if (isActive) Color.Green else MaterialTheme.colorScheme.onPrimary,
                     RoundedCornerShape(12.dp)
                 )
                 .clickable { isActive = true }
@@ -107,7 +101,7 @@ fun ToggleButton(modifier: Modifier) {
         ) {
             Text(
                 text = "Faol",
-                color = if (isActive) selectedTextColor else unselectedTextColor,
+                color = if (isActive) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onBackground  ,
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp,
                 fontWeight = if (isActive) FontWeight.Bold else FontWeight.Normal
