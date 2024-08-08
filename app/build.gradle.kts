@@ -72,14 +72,6 @@ dependencies {
     implementation (libs.mapbox)
     implementation (libs.mapbox.compose)
     implementation(libs.kotlin.coroutines.core)
-
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.json)
-    implementation(libs.ktor.client.contentNegotiation)
-    implementation(libs.ktor.client.logging)
-    implementation(libs.ktor.client.okhttp)
-    implementation(libs.ktor.client.serialization)
-
     implementation(libs.androidx.material)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.material.icons.core)
@@ -88,6 +80,13 @@ dependencies {
     implementation(libs.cupertino.icon.extended)
 
 
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
 
 
