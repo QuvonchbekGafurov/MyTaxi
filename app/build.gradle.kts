@@ -1,9 +1,11 @@
+import shadow.bundletool.com.android.tools.r8.internal.id
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.serialization)
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -92,8 +94,6 @@ dependencies {
 
     val room_version = "2.6.1"
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")

@@ -37,6 +37,7 @@ androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version = "2.6.2" }
 google-play-services-location = { module = "com.google.android.gms:play-services-location", version = "21.0.1" }
 
+
 androidx-material={module="androidx.compose.material:material",version.ref="androidx-material"}
 androidx-material-icons-core={group="androidx.compose.material",name="material-icons-core"}
 androidx-material-icons-extended={group="androidx.compose.material",name="material-icons-extended"}

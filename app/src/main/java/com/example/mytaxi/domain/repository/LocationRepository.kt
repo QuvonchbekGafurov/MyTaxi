@@ -5,5 +5,4 @@ import com.example.mytaxi.domain.model.DataLocation
 
 interface LocationRepository {
     suspend fun getLocation(id: Int): DataLocation
-    suspend fun getAllLocations(): List<DataLocation>
 }
