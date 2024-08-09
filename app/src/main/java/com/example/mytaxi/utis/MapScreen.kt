@@ -285,7 +285,7 @@ fun MapScreen() {
                                                             it.latitude
                                                         )
                                                     )
-                                                    zoom(14.0)
+                                                    zoom(zoomLevel)
                                                 }.build()
                                         )
                                     }

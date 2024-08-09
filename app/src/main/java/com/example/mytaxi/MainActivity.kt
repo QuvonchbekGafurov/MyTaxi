@@ -28,7 +28,6 @@ import com.mapbox.common.location.LocationService
 import com.mapbox.common.location.LocationServiceFactory
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import com.example.mytaxi.utis.LocationScreen
 import com.example.mytaxi.utis.MapScreen
 
 class MainActivity : ComponentActivity() {
