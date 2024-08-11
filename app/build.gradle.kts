@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.serialization)
+    id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
 
 }
@@ -45,7 +46,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.12"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
@@ -91,21 +92,21 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-
-    val room_version = "2.6.1"
-
-
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    // gson converter
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("androidx.work:work-runtime-ktx:2.9.1")
 
 
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
+
+    implementation(libs.androidx.hilt.work)
+    // When using Kotlin.
+    kapt(libs.androidx.hilt.compiler)
+    implementation (libs.androidx.hilt.navigation.compose)
 
 
 
-
+}
+kapt {
+    correctErrorTypes = true
 }

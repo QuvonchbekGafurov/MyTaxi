@@ -1,23 +1,18 @@
-package com.example.mytaxi.utis
+package com.example.mytaxi.utils
 
 import android.Manifest
-import android.content.Context
-import android.graphics.drawable.Icon
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,7 +33,6 @@ import androidx.compose.material.Text
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.materialIcon
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -57,17 +51,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.platform.LocalView
-import androidx.core.view.WindowCompat
 import com.example.mytaxi.R
-import com.mapbox.maps.extension.style.expressions.dsl.generated.image
-import com.mapbox.maps.extension.style.expressions.dsl.generated.mod
+import com.example.mytaxi.presentation.MapContent
+import com.example.mytaxi.presentation.requestLocation
 import io.github.alexzhirkevich.cupertino.CupertinoIcon
 import io.github.alexzhirkevich.cupertino.CupertinoIconButton
 import io.github.alexzhirkevich.cupertino.icons.CupertinoIcons
